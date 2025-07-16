@@ -3,7 +3,7 @@ from genres.models import Genre
 from genres.serializers import GenreSerializer
 
 
-class GenreListCreateView(generics.ListCreateAPIView):
+class GenreCreateListView(generics.ListCreateAPIView):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
 
