@@ -2,12 +2,10 @@ from rest_framework import permissions
 
 
 class GenrePermissionClass(permissions.BasePermission):
-    """
-    Custom permission class to allow only authenticated users to access genre-related views.
-    """
-
+    
     def has_permission(self, request, view):
-        assinatura = Assinatura.objects.filter(user=request.user).first()
-        if assinatura and assinatura.is_active:
-            return True
-        return False
+        if request.method in ['GET', 'HEAD', 'OPTIONS']:
+            return request.user.has_perm('genres.view_genre')
+        
+        if request.method in ['POST', 'PUT', 'PATCH', 'DELETE']:
+            return request.user.has_perm('genres.change_genre')
