@@ -1,17 +1,18 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from actors.models import Actor
-from actors.serializers import ActorSerializer  
+from actors.serializers import ActorSerializer
+from app.permissions import GlobalPermissionClass
 
 
 class ActorCreateListView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, GlobalPermissionClass)
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
 
 
 class ActorRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated, GlobalPermissionClass)
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
-    lookup_field = 'name'  # Assuming you want to use 'id' as the lookup field
+    lookup_field = 'name'

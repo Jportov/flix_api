@@ -3,7 +3,6 @@ from genres.models import Genre
 from actors.models import Actor
 
 
-
 class Movie(models.Model):
     actors = models.ManyToManyField(Actor, related_name='movies')
     title = models.CharField(max_length=255)
