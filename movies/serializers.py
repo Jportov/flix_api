@@ -15,7 +15,7 @@ class MovieModelSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("Release date cannot be before 1990.")
         return value
 
-    def validate_resume(self, value):
+    def validate_description(self, value):
         if len(value) > 200:
             raise serializers.ValidationError("Resume must be at most 200 characters long.")
         return value
