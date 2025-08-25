@@ -1,22 +1,21 @@
 from django.db import models
 
 
-NATIONATIONALITY_CHOICES = (
-    ('American', 'American'),
-    ('British', 'British'),
-    ('Canadian', 'Canadian'),
-    ('Australian', 'Australian'),
-    ('Indian', 'Indian'),
-    ('Other', 'Other'),
+NATIONALITY_CHOICES = (
+    ('USA', 'Estados Unidos'),
+    ('BRAZIL', 'Brasil'),
 )
 
 
 class Actor(models.Model):
-    name = models.CharField(max_length=100)
-    age = models.PositiveIntegerField()
-    bio = models.TextField(blank=True, null=True)
-    date_of_birth = models.DateField(blank=True, null=True)
-    nationality = models.CharField(max_length=50, choices=NATIONATIONALITY_CHOICES, default='Other')
+    name = models.CharField(max_length=200)
+    birthday = models.DateField(null=True, blank=True)
+    nationality = models.CharField(
+        max_length=100,
+        choices=NATIONALITY_CHOICES,
+        blank=True,
+        null=True
+    )
 
     def __str__(self):
         return self.name
